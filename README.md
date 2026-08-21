@@ -41,7 +41,7 @@ Copy `.env.example` to `.env.local` and set it when the real domain is live.
 **1. Resume** — `public/resume.pdf` is wired to the "Download resume" buttons in
 the hero and footer. It is the current A4 resume; replace the file to update it.
 
-**2. Portrait** — `public/swapnil-hero-v3.png` is the hero cut-out, wired via
+**2. Portrait** — `public/swapnil-hero-v4.png` is the hero cut-out, wired via
 `profile.portrait` in `lib/data/profile.ts`. It was produced from a photo with
 macOS's Vision framework (`VNGenerateForegroundInstanceMaskRequest`) — the same
 engine behind Preview's "Remove Background", run locally.
