@@ -95,16 +95,6 @@ export function HeroVisual() {
           transition={{ duration: 1.4, ease: EASE, delay: 0.35 }}
           className="relative flex h-full w-full items-end justify-center"
         >
-          {/* rim glow — the navy shirt would otherwise vanish into the background */}
-          <div
-            aria-hidden
-            className="absolute bottom-0 left-1/2 h-[86%] w-[62%] -translate-x-1/2 rounded-[46%] blur-3xl"
-            style={{
-              background:
-                "radial-gradient(ellipse at 50% 40%, rgba(233,180,76,0.22), rgba(99,102,241,0.10) 55%, transparent 75%)",
-            }}
-          />
-
           {portrait ? (
             <motion.div
               animate={reduce ? undefined : { y: [0, -9, 0] }}
@@ -134,7 +124,6 @@ export function HeroVisual() {
         </motion.div>
       </motion.div>
 
-      <div aria-hidden className="vignette pointer-events-none absolute -inset-16 opacity-60" />
     </div>
   );
 }
