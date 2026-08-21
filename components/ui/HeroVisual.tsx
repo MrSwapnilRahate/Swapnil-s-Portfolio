@@ -114,8 +114,8 @@ export function HeroVisual() {
               <Image
                 src={portrait}
                 alt={`${profile.name}, ${profile.title}`}
-                width={508}
-                height={1112}
+                width={510}
+                height={1118}
                 priority
                 sizes="(max-width: 1024px) 60vw, 34vw"
                 className="h-full w-auto object-contain object-bottom drop-shadow-[0_18px_60px_rgba(0,0,0,0.65)]"
