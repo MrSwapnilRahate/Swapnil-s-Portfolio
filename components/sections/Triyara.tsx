@@ -103,7 +103,7 @@ function StackCard({
           scale,
           top: stackable ? `calc(-14vh + ${index * 28}px)` : undefined,
         }}
-        className="panel-solid ticks relative w-full origin-top overflow-hidden rounded-sm"
+        className="panel-solid ticks relative w-full origin-top overflow-hidden rounded-xl"
       >
         {/* dimming veil as the next card arrives */}
         <motion.div
@@ -123,13 +123,13 @@ function StackCard({
               </span>
               <span aria-hidden className="h-4 w-px bg-line-strong" />
               <span
-                className={`label-mono rounded-sm border px-2.5 py-1 text-[0.5rem] ${statusTone[version.status]}`}
+                className={`label-mono rounded-md border px-2.5 py-1 text-[0.5rem] ${statusTone[version.status]}`}
               >
                 {version.status}
               </span>
             </div>
 
-            <h3 className="display mt-5 text-[clamp(1.6rem,4.6vw,3.1rem)] leading-[0.92] text-bone">
+            <h3 className="display chisel-sm mt-5 text-[clamp(1.6rem,4.6vw,3.1rem)] leading-[0.92] text-bone">
               {version.name}
             </h3>
             <p className="label-mono mt-3 text-[0.55rem] text-gold">{version.tagline}</p>

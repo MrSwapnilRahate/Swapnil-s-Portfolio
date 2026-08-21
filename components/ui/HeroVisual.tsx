@@ -145,7 +145,7 @@ function Monogram() {
 
   return (
     <div className="relative mb-[14%] h-[74%] w-[min(19rem,62%)]">
-      <div className="panel ticks relative h-full w-full overflow-hidden rounded-sm">
+      <div className="panel ticks relative h-full w-full overflow-hidden rounded-xl">
         <div aria-hidden className="spotlight absolute inset-0" />
         <div aria-hidden className="grid-floor absolute inset-0 opacity-25" />
 

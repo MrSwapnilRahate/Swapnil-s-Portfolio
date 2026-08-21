@@ -17,7 +17,7 @@ export function Button({
   className = "",
 }: Props) {
   const base =
-    "group relative flex w-full items-center justify-center gap-2.5 overflow-hidden rounded-sm px-6 py-3.5 label-mono text-[0.62rem] transition-colors duration-500 sm:inline-flex sm:w-auto sm:px-8";
+    "group relative flex w-full items-center justify-center gap-2.5 overflow-hidden rounded-lg px-6 py-3.5 label-mono text-[0.62rem] transition-colors duration-500 sm:inline-flex sm:w-auto sm:px-8";
 
   const styles =
     variant === "gold"

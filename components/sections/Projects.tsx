@@ -27,7 +27,7 @@ export function Projects() {
         <RevealGroup className="mt-14 grid gap-5 md:grid-cols-2 lg:mt-20" gap={0.12}>
           {projects.map((p) => (
             <RevealItem key={p.index}>
-              <article className="panel ticks group relative flex h-full flex-col overflow-hidden rounded-sm p-6 transition-colors duration-700 hover:border-gold/40 sm:p-8">
+              <article className="panel ticks group relative flex h-full flex-col overflow-hidden rounded-xl p-6 transition-colors duration-700 hover:border-gold/40 sm:p-8">
                 <div
                   aria-hidden
                   className="spotlight pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100"
@@ -45,7 +45,7 @@ export function Projects() {
                   />
                 </div>
 
-                <h3 className="display relative mt-6 text-[clamp(1.35rem,3.4vw,2.1rem)] leading-[0.95] text-bone transition-colors duration-500 group-hover:text-gold-bright">
+                <h3 className="display chisel-sm relative mt-6 text-[clamp(1.35rem,3.4vw,2.1rem)] leading-[0.95] text-bone transition-colors duration-500 group-hover:text-gold-bright">
                   {p.title}
                 </h3>
 

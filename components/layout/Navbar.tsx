@@ -100,7 +100,7 @@ export function Navbar() {
           <div className="flex items-center gap-3">
             <a
               href="#contact"
-              className="label-mono hidden items-center gap-1.5 rounded-sm border border-line-strong px-4 py-2.5 text-[0.6rem] text-bone transition-colors duration-500 hover:border-gold/55 hover:text-gold-bright sm:inline-flex"
+              className="label-mono hidden items-center gap-1.5 rounded-lg border border-line-strong px-4 py-2.5 text-[0.6rem] text-bone transition-colors duration-500 hover:border-gold/55 hover:text-gold-bright sm:inline-flex"
             >
               Let&apos;s talk
               <ArrowUpRight size={12} strokeWidth={1.6} />
@@ -112,7 +112,7 @@ export function Navbar() {
               aria-expanded={open}
               aria-controls="mobile-menu"
               aria-label={open ? "Close menu" : "Open menu"}
-              className="grid h-10 w-10 place-items-center rounded-sm border border-line text-bone transition-colors hover:border-gold/50 hover:text-gold lg:hidden"
+              className="grid h-10 w-10 place-items-center rounded-lg border border-line text-bone transition-colors hover:border-gold/50 hover:text-gold lg:hidden"
             >
               {open ? <X size={17} strokeWidth={1.5} /> : <Menu size={17} strokeWidth={1.5} />}
             </button>

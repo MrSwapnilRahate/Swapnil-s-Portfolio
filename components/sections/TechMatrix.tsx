@@ -48,7 +48,7 @@ export function TechMatrix() {
         <RevealGroup className="mt-12 grid gap-5 lg:mt-16 lg:grid-cols-3" gap={0.1}>
           {domains.map((d) => (
             <RevealItem key={d.id} className={spanClass[d.span]}>
-              <article className="panel ticks group relative flex h-full flex-col overflow-hidden rounded-sm p-6 transition-colors duration-700 hover:border-gold/40 sm:p-8">
+              <article className="panel ticks group relative flex h-full flex-col overflow-hidden rounded-xl p-6 transition-colors duration-700 hover:border-gold/40 sm:p-8">
                 <div
                   aria-hidden
                   className="spotlight pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100"
@@ -56,7 +56,7 @@ export function TechMatrix() {
 
                 <div className="relative flex items-baseline gap-3">
                   <span className="label-mono text-[0.52rem] text-faint">{d.index}</span>
-                  <h3 className="display gold-text text-[clamp(1.1rem,2.6vw,1.6rem)] leading-none">
+                  <h3 className="display gold-text chisel-sm text-[clamp(1.1rem,2.6vw,1.6rem)] leading-none">
                     {d.title}
                   </h3>
                 </div>
@@ -96,7 +96,7 @@ export function TechMatrix() {
           </Reveal>
 
           <RevealGroup
-            className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-line bg-line sm:grid-cols-3 lg:grid-cols-4"
+            className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-3 lg:grid-cols-4"
             gap={0.045}
           >
             {capabilities.map((c) => (

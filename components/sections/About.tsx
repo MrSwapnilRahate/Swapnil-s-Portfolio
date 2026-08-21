@@ -46,7 +46,7 @@ export function About() {
 
           {/* ---- Framed fact panel (the reference's framed portrait slot) ---- */}
           <Reveal delay={0.15}>
-            <div className="panel ticks relative rounded-sm p-6 sm:p-8">
+            <div className="panel ticks relative rounded-xl p-6 sm:p-8">
               <div aria-hidden className="spotlight pointer-events-none absolute inset-0" />
               <p className="label-mono relative text-[0.55rem] text-gold">At a glance</p>
 

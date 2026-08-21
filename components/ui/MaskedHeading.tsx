@@ -24,7 +24,7 @@ export function MaskedHeading({
   delay = 0,
 }: Props) {
   return (
-    <Tag className={`display ${className}`}>
+    <Tag className={`display chisel ${className}`}>
       <motion.span
         className="block"
         initial="hidden"
@@ -34,7 +34,7 @@ export function MaskedHeading({
       >
         {lines.map((line, i) => (
           // pb/-mb keeps descenders and the gradient from being clipped by the mask
-          <span key={line} className="block overflow-hidden pb-[0.08em] -mb-[0.08em]">
+          <span key={line} className="block overflow-hidden pb-[0.16em] -mb-[0.16em]">
             <motion.span
               className={`block ${i >= goldFrom ? "gold-text" : ""}`}
               variants={maskLine}

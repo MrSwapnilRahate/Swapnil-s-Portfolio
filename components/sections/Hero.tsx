@@ -115,18 +115,27 @@ export function Hero() {
           <div className="relative">
             <HeroVisual />
 
-            {/* handwritten signature, as in the reference */}
+            {/*
+              Reference places a small caption stack and the script signature to
+              the RIGHT of the figure, vertically centred against its upper body.
+            */}
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: 10 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1.2, ease: EASE, delay: 1.25 }}
-              className="mt-3 text-center lg:absolute lg:bottom-2 lg:right-1 lg:mt-0 lg:text-right"
+              className="mt-3 text-center lg:absolute lg:right-0 lg:top-[38%] lg:mt-0 lg:max-w-[9rem] lg:text-right"
             >
-              <p className="label-mono text-[0.5rem] text-faint">Built &amp; shipped by</p>
-              <p className="script -mt-1 text-3xl leading-tight text-gold sm:text-4xl">
+              <p className="label-mono text-[0.5rem] leading-[1.9] text-gold/85">
+                {profile.title}
+              </p>
+              <p className="label-mono text-[0.5rem] leading-[1.9] text-gold/85">
+                {profile.positioning}
+              </p>
+              <p className="script mt-1 text-3xl leading-tight text-gold sm:text-4xl">
                 {profile.firstName}
               </p>
             </motion.div>
+
           </div>
         </div>
       </motion.div>

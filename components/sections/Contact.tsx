@@ -25,7 +25,7 @@ export function Contact() {
   }
 
   const field =
-    "w-full rounded-sm border border-line bg-white/[0.02] px-4 py-3 text-sm text-bone placeholder:text-faint transition-colors duration-500 focus:border-gold/55 focus:outline-none";
+    "w-full rounded-lg border border-line bg-white/[0.02] px-4 py-3 text-sm text-bone placeholder:text-faint transition-colors duration-500 focus:border-gold/55 focus:outline-none";
 
   return (
     <section id="contact" className="section-pad relative overflow-hidden">
@@ -48,7 +48,7 @@ export function Contact() {
             </Reveal>
 
             <Reveal delay={0.2}>
-              <ul className="mt-10 space-y-px overflow-hidden rounded-sm border border-line">
+              <ul className="mt-10 space-y-px overflow-hidden rounded-xl border border-line">
                 {channels.map((c) => (
                   <li key={c.label}>
                     <a
@@ -85,7 +85,7 @@ export function Contact() {
 
           {/* ---- Right: form panel ---- */}
           <Reveal delay={0.18}>
-            <div className="panel ticks relative rounded-sm p-6 sm:p-8">
+            <div className="panel ticks relative rounded-xl p-6 sm:p-8">
               <p className="label-mono flex items-center gap-2 text-[0.52rem] text-gold">
                 <Mail size={11} strokeWidth={1.7} />
                 Compose message
@@ -144,7 +144,7 @@ export function Contact() {
 
                 <button
                   type="submit"
-                  className="group label-mono relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-sm border border-gold/60 bg-gold px-6 py-3.5 text-[0.62rem] text-void transition-colors duration-500 hover:bg-gold-bright"
+                  className="group label-mono relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-lg border border-gold/60 bg-gold px-6 py-3.5 text-[0.62rem] text-void transition-colors duration-500 hover:bg-gold-bright"
                 >
                   <span
                     aria-hidden
