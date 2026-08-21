@@ -17,7 +17,7 @@ export const profile = {
 
   /** Rendered as the three-line hero lockup. */
   hero: {
-    lines: ["I build", "digital", "platforms."],
+    lines: ["I build", "digital", "platforms"],
     /** Index of the first line that takes the gold gradient. */
     goldFrom: 1,
     roles: [

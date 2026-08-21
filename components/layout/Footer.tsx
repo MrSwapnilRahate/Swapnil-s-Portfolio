@@ -11,7 +11,6 @@ export function Footer() {
           <div>
             <p className="display text-[clamp(1.6rem,5vw,2.6rem)] leading-none text-bone">
               {profile.name}
-              <span className="text-gold">.</span>
             </p>
             <p className="label-mono mt-3 text-[0.53rem] text-faint">
               {profile.title} — {profile.positioning}

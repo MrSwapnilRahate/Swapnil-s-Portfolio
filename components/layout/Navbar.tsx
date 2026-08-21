@@ -68,7 +68,6 @@ export function Navbar() {
             className="label-mono text-[0.66rem] text-bone transition-colors hover:text-gold sm:text-[0.72rem]"
           >
             {profile.name}
-            <span className="text-gold">.</span>
           </a>
 
           <ul className="hidden items-center gap-8 lg:flex">
