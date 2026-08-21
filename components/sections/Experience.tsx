@@ -78,30 +78,43 @@ export function Experience() {
                       )}
                     </span>
 
-                    <h3 className="display text-[clamp(1.35rem,3.6vw,2.3rem)] leading-[0.95] text-bone">
+                    <h3
+                      className={`display leading-[0.95] text-bone ${
+                        role.education
+                          ? "text-[clamp(1.1rem,2.6vw,1.6rem)]"
+                          : "text-[clamp(1.35rem,3.6vw,2.3rem)]"
+                      }`}
+                    >
                       {role.role}
                     </h3>
                     <p className="label-mono mt-2.5 text-[0.58rem] text-gold">
                       {role.company}
                     </p>
 
-                    <p className="mt-4 max-w-2xl text-[0.88rem] leading-relaxed text-muted">
-                      {role.summary}
-                    </p>
+                    {!role.education && (
+                      <p className="mt-4 max-w-2xl text-[0.88rem] leading-relaxed text-muted">
+                        {role.summary}
+                      </p>
+                    )}
 
-                    <RevealGroup className="mt-6 grid max-w-3xl gap-2.5 md:grid-cols-2" gap={0.05}>
-                      {role.points.map((pt) => (
-                        <RevealItem key={pt}>
-                          <p className="flex gap-3 text-[0.79rem] leading-snug text-muted">
-                            <span
-                              aria-hidden
-                              className="mt-[0.4rem] h-1 w-1 shrink-0 rotate-45 bg-gold/70"
-                            />
-                            {pt}
-                          </p>
-                        </RevealItem>
-                      ))}
-                    </RevealGroup>
+                    {role.points.length > 0 && (
+                      <RevealGroup
+                        className="mt-6 grid max-w-3xl gap-2.5 md:grid-cols-2"
+                        gap={0.05}
+                      >
+                        {role.points.map((pt) => (
+                          <RevealItem key={pt}>
+                            <p className="flex gap-3 text-[0.79rem] leading-snug text-muted">
+                              <span
+                                aria-hidden
+                                className="mt-[0.4rem] h-1 w-1 shrink-0 rotate-45 bg-gold/70"
+                              />
+                              {pt}
+                            </p>
+                          </RevealItem>
+                        ))}
+                      </RevealGroup>
+                    )}
                   </div>
                 </div>
               </Reveal>

@@ -1,5 +1,5 @@
-import { ArrowUp } from "lucide-react";
-import { profile, navLinks } from "@/lib/data/profile";
+import { ArrowUp, ArrowUpRight, Download } from "lucide-react";
+import { profile, navLinks, channels } from "@/lib/data/profile";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -16,19 +16,59 @@ export function Footer() {
             <p className="label-mono mt-3 text-[0.53rem] text-faint">
               {profile.title} — {profile.positioning}
             </p>
+
+            <a
+              href={profile.resume}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="label-mono mt-6 inline-flex items-center gap-2 border-b border-line pb-1 text-[0.55rem] text-muted transition-colors duration-500 hover:border-gold/60 hover:text-gold-bright"
+            >
+              <Download size={11} strokeWidth={1.7} />
+              Download resume
+            </a>
           </div>
 
-          <nav aria-label="Footer" className="flex flex-wrap gap-x-7 gap-y-3">
-            {navLinks.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                className="label-mono text-[0.55rem] text-muted transition-colors duration-500 hover:text-gold"
-              >
-                {l.label}
-              </a>
-            ))}
-          </nav>
+          <div className="flex flex-col gap-10 sm:flex-row sm:gap-16">
+            <nav aria-label="Footer">
+              <p className="label-mono mb-4 text-[0.5rem] text-faint">Sections</p>
+              <ul className="flex flex-col gap-2.5">
+                {navLinks.map((l) => (
+                  <li key={l.href}>
+                    <a
+                      href={l.href}
+                      className="label-mono inline-flex text-[0.55rem] leading-none text-muted transition-colors duration-500 hover:text-gold"
+                    >
+                      {l.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            <div>
+              <p className="label-mono mb-4 text-[0.5rem] text-faint">Elsewhere</p>
+              <ul className="flex flex-col gap-2.5">
+                {channels.map((c) => (
+                  <li key={c.label}>
+                    <a
+                      href={c.href}
+                      {...(c.href.startsWith("http")
+                        ? { target: "_blank", rel: "noopener noreferrer" }
+                        : {})}
+                      className="group label-mono inline-flex items-center gap-1.5 text-[0.55rem] leading-none text-muted transition-colors duration-500 hover:text-gold"
+                    >
+                      {c.label}
+                      <ArrowUpRight
+                        size={10}
+                        strokeWidth={1.6}
+                        className="text-faint transition-all duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-gold"
+                      />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
 
         <div className="mt-12 flex flex-col gap-4 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">

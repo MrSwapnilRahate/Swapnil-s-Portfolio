@@ -1,13 +1,21 @@
 import { profile, stats } from "@/lib/data/profile";
+import { experience } from "@/lib/data/experience";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { MaskedHeading } from "@/components/ui/MaskedHeading";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 
+/* Derived from the experience data so the panel can't drift out of sync. */
+const [current, previous] = experience;
+
 const facts = [
-  { k: "Current", v: "Founder / Product & Technology Lead" },
-  { k: "Company", v: "TRIYARA Exports" },
-  { k: "Previously", v: "Software Development Engineer — Frontend" },
-  { k: "Enterprise", v: "Infosys · Apr 2022 — Jun 2025" },
+  { k: "Current", v: current.role },
+  { k: "Company", v: current.company },
+  { k: "Previously", v: previous.role },
+  { k: "Enterprise", v: `${previous.company} · ${previous.period}` },
+  {
+    k: "Education",
+    v: `B.E. · ${profile.education.institution} · ${profile.education.year}`,
+  },
   { k: "Focus", v: "Frontend Architecture · Product Engineering" },
   { k: "Based in", v: profile.location },
 ];

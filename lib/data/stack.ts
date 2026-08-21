@@ -16,7 +16,7 @@ export const domains: Domain[] = [
       "Component systems and rendering strategy for applications that stay maintainable past the first release.",
     groups: [
       { label: "Core", items: ["React.js", "Next.js", "TypeScript", "JavaScript", "HTML5", "CSS3"] },
-      { label: "UI & State", items: ["Tailwind CSS", "Material UI", "Redux", "TanStack Query"] },
+      { label: "UI & State", items: ["Tailwind CSS", "Material UI", "Redux", "TanStack Query", "Server-State Management"] },
       { label: "Rendering", items: ["SSR", "SSG", "ISR", "Server Components", "Client Components"] },
     ],
     span: "wide",
@@ -28,7 +28,7 @@ export const domains: Domain[] = [
     blurb:
       "Layered services with authorization and data access kept deliberately separate.",
     groups: [
-      { label: "Services", items: ["Node.js", "Express.js", "REST APIs"] },
+      { label: "Services", items: ["Node.js", "Express.js", "REST APIs", "API Design", "Zod"] },
       { label: "Data", items: ["PostgreSQL", "MySQL", "MongoDB", "Prisma ORM", "Redis concepts"] },
     ],
     span: "normal",

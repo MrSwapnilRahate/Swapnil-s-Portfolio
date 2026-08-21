@@ -38,8 +38,8 @@ Copy `.env.example` to `.env.local` and set it when the real domain is live.
 
 ## Two things to personalise
 
-**1. Resume** — `public/resume.pdf` is wired to the "Download resume" button.
-A copy of the existing resume is already in place; replace the file to update it.
+**1. Resume** — `public/resume.pdf` is wired to the "Download resume" buttons in
+the hero and footer. It is the current A4 resume; replace the file to update it.
 
 **2. Portrait (optional but recommended)** — the hero renders a lit "stage"
 that works with or without a photo. It currently shows an `SR` monogram.
@@ -66,8 +66,8 @@ All copy lives in `lib/data/` — no content is hardcoded in components.
 
 | File | Contains |
 | --- | --- |
-| `profile.ts` | Name, title, hero lockup, about copy, nav links, stats, contact details |
-| `experience.ts` | Roles, dates, responsibilities |
+| `profile.ts` | Name, title, hero lockup, about copy, nav links, stats, core strengths, education, contact channels |
+| `experience.ts` | Roles, dates, responsibilities, education entry |
 | `triyara.ts` | TRIYARA V1–V4 versions, status, highlights, stack |
 | `projects.ts` | Selected projects |
 | `stack.ts` | Tech domains, system-design capabilities, marquee, tools |
@@ -159,3 +159,21 @@ Every route is static, so the whole site is served from the CDN.
   Escape to close, scroll lock while open.
 - Decorative layers are `aria-hidden`; the custom cursor never replaces the
   real one on touch or reduced-motion.
+
+
+---
+
+## Content source
+
+Site copy is taken from the current resume
+(`Swapnil_Rahate_A4_Final_4.5_3.5_Experience.pdf`). The performance figures in
+the stats strip and the TRIYARA V1 card — Lighthouse 85 → 99 and LCP 4.2s →
+1.0s — are the measured results recorded there. No metric on the site is
+invented; if the resume changes, update `lib/data/` to match.
+
+### A note on the phone number
+
+`profile.phone` publishes a personal mobile number in the Contact section and
+footer. It is live because it is on the resume. To remove it, delete the
+`Phone` entry from the `channels` array in `lib/data/profile.ts` — both the
+Contact list and the footer read from that one array.

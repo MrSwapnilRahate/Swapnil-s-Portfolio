@@ -1,4 +1,5 @@
 import { domains, capabilities, marqueeItems, tools } from "@/lib/data/stack";
+import { coreStrengths } from "@/lib/data/profile";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { MaskedHeading } from "@/components/ui/MaskedHeading";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
@@ -31,8 +32,20 @@ export function TechMatrix() {
           </Reveal>
         </div>
 
+        {/* ---- Core strengths ---- */}
+        <Reveal delay={0.18}>
+          <div className="mt-10 flex flex-wrap items-center gap-2 border-t border-line pt-8">
+            <span className="label-mono mr-2 text-[0.52rem] text-faint">
+              Core strengths
+            </span>
+            {coreStrengths.map((c) => (
+              <Tag key={c}>{c}</Tag>
+            ))}
+          </div>
+        </Reveal>
+
         {/* ---- Bento of domains ---- */}
-        <RevealGroup className="mt-14 grid gap-5 lg:mt-20 lg:grid-cols-3" gap={0.1}>
+        <RevealGroup className="mt-12 grid gap-5 lg:mt-16 lg:grid-cols-3" gap={0.1}>
           {domains.map((d) => (
             <RevealItem key={d.id} className={spanClass[d.span]}>
               <article className="panel ticks group relative flex h-full flex-col overflow-hidden rounded-sm p-6 transition-colors duration-700 hover:border-gold/40 sm:p-8">

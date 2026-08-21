@@ -2,16 +2,10 @@
 
 import { useState } from "react";
 import { ArrowUpRight, Mail, MapPin, Send } from "lucide-react";
-import { profile } from "@/lib/data/profile";
+import { profile, channels } from "@/lib/data/profile";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { MaskedHeading } from "@/components/ui/MaskedHeading";
 import { Reveal } from "@/components/ui/Reveal";
-
-const channels = [
-  { label: "Email", value: profile.email, href: `mailto:${profile.email}` },
-  { label: "LinkedIn", value: "in/swapnil-rahate", href: profile.linkedin },
-  { label: "GitHub", value: `@${profile.githubHandle}`, href: profile.github },
-];
 
 export function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
