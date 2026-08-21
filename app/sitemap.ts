@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
+import { siteUrl } from "@/lib/site";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://swapnilrahate.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

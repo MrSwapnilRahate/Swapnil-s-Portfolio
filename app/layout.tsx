@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Anton, Inter, JetBrains_Mono, Mrs_Saint_Delafield } from "next/font/google";
 import "./globals.css";
 import { profile } from "@/lib/data/profile";
+import { siteUrl } from "@/lib/site";
 import { Providers } from "./providers";
 
 const inter = Inter({
@@ -31,7 +32,6 @@ const script = Mrs_Saint_Delafield({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://swapnilrahate.com";
 
 const title = "Swapnil Rahate | Software Engineer | Frontend & Product Engineering";
 const description =
