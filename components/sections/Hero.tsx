@@ -120,7 +120,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.2, ease: EASE, delay: 1.25 }}
-              className="absolute bottom-2 right-1 text-right sm:right-4"
+              className="mt-3 text-center lg:absolute lg:bottom-2 lg:right-1 lg:mt-0 lg:text-right"
             >
               <p className="label-mono text-[0.5rem] text-faint">Built &amp; shipped by</p>
               <p className="script -mt-1 text-3xl leading-tight text-gold sm:text-4xl">

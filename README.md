@@ -41,22 +41,19 @@ Copy `.env.example` to `.env.local` and set it when the real domain is live.
 **1. Resume** — `public/resume.pdf` is wired to the "Download resume" buttons in
 the hero and footer. It is the current A4 resume; replace the file to update it.
 
-**2. Portrait (optional but recommended)** — the hero renders a lit "stage"
-that works with or without a photo. It currently shows an `SR` monogram.
-To use a real photo, drop a background-removed cut-out (PNG, transparent,
-roughly 620×900) at `public/portrait.png` and add one line to
-`lib/data/profile.ts`:
+**2. Portrait** — `public/portrait.png` is the hero cut-out, wired via
+`profile.portrait` in `lib/data/profile.ts`. It was produced from a photo with
+macOS's Vision framework (`VNGenerateForegroundInstanceMaskRequest`) — the same
+engine behind Preview's "Remove Background", run locally.
 
-```ts
-export const profile = {
-  name: "Swapnil Rahate",
-  portrait: "/portrait.png",   // ← add this
-  ...
-}
-```
+To swap in a different photo, cut it out to a transparent PNG and replace the
+file. Remove the `portrait` line from `profile.ts` and the hero falls back to
+the `SR` monogram automatically.
 
-The spotlight, floor grid and reflection are drawn in CSS, so the photo drops
-straight into the existing lighting.
+The stage lighting — beam, rim glow, floor grid, contact shadow — is all CSS, so
+any cut-out drops into the same lighting. A **full-length** shot composes best;
+the current image is cropped mid-thigh, so a CSS mask fades its lower edge into
+the floor.
 
 ---
 

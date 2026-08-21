@@ -1,25 +1,70 @@
 "use client";
 
+import { useRef } from "react";
 import Image from "next/image";
-import { motion } from "motion/react";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useScroll,
+  useTransform,
+  useReducedMotion,
+} from "motion/react";
 import { profile } from "@/lib/data/profile";
 import { EASE } from "@/lib/motion";
+import { useMediaQuery } from "@/lib/hooks/useMediaQuery";
 
 /**
  * The reference frames its subject in a stage: overhead beam, rim light and a
- * reflective grid floor. That staging is the visual, so it renders with or
- * without a photograph — drop a cut-out at /public/portrait.png and set
- * `portrait` in profile.ts to light it.
+ * reflective grid floor. The figure is a still cut-out, so the motion is
+ * cinematic rather than a walk cycle — entrance, a slow breathing float,
+ * scroll parallax and a subtle tilt toward the cursor. All GPU transforms.
  */
 export function HeroVisual() {
-  const portrait = (profile as { portrait?: string }).portrait;
+  const ref = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
+  const finePointer = useMediaQuery("(pointer: fine)");
+  const tiltEnabled = finePointer && !reduce;
+
+  const { portrait } = profile;
+
+  /* Scroll parallax: the figure drifts slower than the page. */
+  const { scrollYProgress } = useScroll();
+  const parallax = useTransform(scrollYProgress, [0, 0.2], [0, reduce ? 0 : 46]);
+
+  /* Pointer tilt — springed so it never snaps. */
+  const px = useMotionValue(0);
+  const py = useMotionValue(0);
+  const spring = { stiffness: 90, damping: 20, mass: 0.7 };
+  const rotateY = useSpring(px, spring);
+  const rotateX = useSpring(py, spring);
+
+  function onMove(e: React.MouseEvent<HTMLDivElement>) {
+    if (!tiltEnabled || !ref.current) return;
+    const r = ref.current.getBoundingClientRect();
+    const dx = (e.clientX - (r.left + r.width / 2)) / (r.width / 2);
+    const dy = (e.clientY - (r.top + r.height / 2)) / (r.height / 2);
+    px.set(dx * 5);
+    py.set(-dy * 3.5);
+  }
+
+  function reset() {
+    px.set(0);
+    py.set(0);
+  }
 
   return (
-    <div className="relative h-[clamp(15rem,38vw,20rem)] w-full select-none lg:h-[clamp(26rem,40vw,38rem)]">
+    <div
+      ref={ref}
+      onMouseMove={onMove}
+      onMouseLeave={reset}
+      className="relative h-[clamp(19rem,46vw,24rem)] w-full select-none lg:h-[clamp(28rem,44vw,40rem)]"
+      style={{ perspective: 1200 }}
+    >
       {/* overhead beam */}
       <div
         aria-hidden
-        className={`absolute left-1/2 top-0 h-[62%] w-[78%] -translate-x-1/2 beam`}
+        className="beam absolute left-1/2 top-0 h-[62%] w-[78%] -translate-x-1/2"
         style={{
           background:
             "conic-gradient(from 180deg at 50% 0%, transparent 42%, rgba(233,180,76,0.20) 50%, transparent 58%)",
@@ -27,48 +72,76 @@ export function HeroVisual() {
         }}
       />
 
-      {/* floor + reflection */}
+      {/* floor + contact shadow */}
       <div
         aria-hidden
-        className="grid-floor mask-fade-b absolute inset-x-0 bottom-0 h-[42%] opacity-45"
+        className="grid-floor mask-fade-b absolute inset-x-0 bottom-0 h-[38%] opacity-40"
         style={{ transform: "perspective(520px) rotateX(66deg)", transformOrigin: "bottom" }}
       />
       <div
         aria-hidden
-        className="absolute inset-x-[18%] bottom-[16%] h-24 rounded-[50%] blur-2xl"
-        style={{ background: "radial-gradient(ellipse, rgba(233,180,76,0.26), transparent 70%)" }}
+        className="absolute inset-x-[20%] bottom-[6%] h-20 rounded-[50%] blur-2xl"
+        style={{ background: "radial-gradient(ellipse, rgba(233,180,76,0.22), transparent 70%)" }}
       />
 
       {/* subject */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.94, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 1.4, ease: EASE, delay: 0.35 }}
+        style={{ y: parallax, rotateX, rotateY, transformStyle: "preserve-3d" }}
         className="absolute inset-0 flex items-end justify-center"
       >
-        {portrait ? (
-          <Image
-            src={portrait}
-            alt={`${profile.name}, ${profile.title}`}
-            width={620}
-            height={900}
-            priority
-            sizes="(max-width: 1024px) 70vw, 34vw"
-            className="h-full w-auto object-contain object-bottom drop-shadow-[0_0_60px_rgba(233,180,76,0.18)]"
+        <motion.div
+          initial={{ opacity: 0, scale: 0.94, y: 24 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 1.4, ease: EASE, delay: 0.35 }}
+          className="relative flex h-full w-full items-end justify-center"
+        >
+          {/* rim glow — the navy shirt would otherwise vanish into the background */}
+          <div
+            aria-hidden
+            className="absolute bottom-0 left-1/2 h-[86%] w-[62%] -translate-x-1/2 rounded-[46%] blur-3xl"
+            style={{
+              background:
+                "radial-gradient(ellipse at 50% 40%, rgba(233,180,76,0.22), rgba(99,102,241,0.10) 55%, transparent 75%)",
+            }}
           />
-        ) : (
-          <Monogram />
-        )}
+
+          {portrait ? (
+            <motion.div
+              animate={reduce ? undefined : { y: [0, -9, 0] }}
+              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+              className="relative h-full w-auto"
+            >
+              <Image
+                src={portrait}
+                alt={`${profile.name}, ${profile.title}`}
+                width={571}
+                height={1232}
+                priority
+                sizes="(max-width: 1024px) 60vw, 34vw"
+                className="h-full w-auto object-contain object-bottom drop-shadow-[0_18px_60px_rgba(0,0,0,0.65)]"
+                style={{
+                  // blends the mid-thigh crop into the stage floor
+                  maskImage:
+                    "linear-gradient(180deg, #000 0%, #000 82%, rgba(0,0,0,0.45) 93%, transparent 100%)",
+                  WebkitMaskImage:
+                    "linear-gradient(180deg, #000 0%, #000 82%, rgba(0,0,0,0.45) 93%, transparent 100%)",
+                }}
+              />
+            </motion.div>
+          ) : (
+            <Monogram />
+          )}
+        </motion.div>
       </motion.div>
 
-      {/* vignette to sink the edges */}
       <div aria-hidden className="vignette pointer-events-none absolute -inset-16 opacity-60" />
     </div>
   );
 }
 
-/** Lit monolith fallback — reads as staged art, not a missing image. */
+/** Lit monolith fallback — used when no portrait is set. */
 function Monogram() {
+  const reduce = useReducedMotion();
 
   return (
     <div className="relative mb-[14%] h-[74%] w-[min(19rem,62%)]">
@@ -77,23 +150,16 @@ function Monogram() {
         <div aria-hidden className="grid-floor absolute inset-0 opacity-25" />
 
         <div className="relative flex h-full flex-col items-center justify-center gap-5 px-6 text-center">
-          <span className="display gold-text text-[clamp(4rem,13vw,7.5rem)] leading-none">
-            SR
-          </span>
-          <span className="label-mono text-[0.55rem] text-muted">
-            {profile.title}
-          </span>
+          <span className="display gold-text text-[clamp(4rem,13vw,7.5rem)] leading-none">SR</span>
+          <span className="label-mono text-[0.55rem] text-muted">{profile.title}</span>
           <span aria-hidden className="h-px w-14 bg-gold/40" />
-          <span className="label-mono text-[0.55rem] text-faint">
-            {profile.positioning}
-          </span>
+          <span className="label-mono text-[0.55rem] text-faint">{profile.positioning}</span>
         </div>
 
-        {/* rim light sweeping the left edge */}
         <motion.div
           aria-hidden
           className="absolute inset-y-0 left-0 w-px bg-gradient-to-b from-transparent via-gold to-transparent"
-          animate={{ opacity: [0.3, 0.85, 0.3] }}
+          animate={reduce ? undefined : { opacity: [0.3, 0.85, 0.3] }}
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
         />
       </div>

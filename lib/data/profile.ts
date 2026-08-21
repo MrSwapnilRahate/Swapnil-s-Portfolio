@@ -12,6 +12,8 @@ export const profile = {
   github: "https://github.com/MrSwapnilRahate",
   githubHandle: "MrSwapnilRahate",
   resume: "/resume.pdf",
+  /** Background-removed cut-out rendered on the hero stage. */
+  portrait: "/portrait.png",
 
   /** Rendered as the three-line hero lockup. */
   hero: {
