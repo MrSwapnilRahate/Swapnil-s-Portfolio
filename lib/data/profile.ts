@@ -13,7 +13,7 @@ export const profile = {
   githubHandle: "MrSwapnilRahate",
   resume: "/resume.pdf",
   /** Background-removed cut-out rendered on the hero stage. */
-  portrait: "/swapnil-hero-v4.png",
+  portrait: "/swapnil-hero-v3.png",
 
   /** Rendered as the three-line hero lockup. */
   hero: {
